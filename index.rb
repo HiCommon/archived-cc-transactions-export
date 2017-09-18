@@ -1,5 +1,7 @@
 require 'csv'
 require 'time'
+require 'pry-byebug'
+require './zip_file_generator.rb'
 csv = CSV.read("transactions.csv")
 headers = csv.shift
 date = Time.now.strftime("%m-%d-%Y")
@@ -16,3 +18,7 @@ csv.each do |row|
     end
   end
 end
+directory_to_zip = "./transactions"
+output_file = "./transactions.zip"
+zf = ZipFileGenerator.new(directory_to_zip, output_file)
+zf.write()
